@@ -1,0 +1,19 @@
+{
+  "name": "hellskitchen",
+  "version": "1.0.0",
+  "description": "This a food ordering website specifically designed to serve your cravings for particular foods",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PiyushChowdhury1509/Hells-s-Kitchen.git"
+  },
+  "author": "Piyush Chowdhury",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PiyushChowdhury1509/Hells-s-Kitchen/issues"
+  },
+  "homepage": "https://github.com/PiyushChowdhury1509/Hells-s-Kitchen#readme"
+}
