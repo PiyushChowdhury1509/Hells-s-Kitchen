@@ -1,5 +1,5 @@
-{
-    "bbqs": [
+const db={
+    "barbeques": [
       {
         "id": "ribs-brisket-and-burnt-ends",
         "img": "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/79619/joes-kc-ribs-brisket-and-burnt-ends.6710e994980e485e6441b794717ad6fb.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
@@ -13125,7 +13125,7 @@
       }
     ],
     "pagination": {
-      "bbqs": 59,
+      "barbeques": 59,
       "best-foods": 60,
       "breads": 58,
       "burgers": 60,
@@ -13142,3 +13142,4 @@
       "our-foods": 697
     }
   }
+  export default db;
