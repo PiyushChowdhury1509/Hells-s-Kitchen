@@ -7,6 +7,7 @@ import Footer from "./components/footer";
 import Body from "./components/body";
 import AboutUs from "./components/aboutUs";
 import ContactUs from "./components/contactUs";
+import FoodCard from "./components/foodCard";
 
 const AppLayout=()=>{
     return (
@@ -38,6 +39,10 @@ const AppRouter=createBrowserRouter([
             {
                 path:"contactus",
                 element:<ContactUs/>
+            },
+            {
+                path:":name",
+                element:<FoodCard/>
             }
         ]
     }
