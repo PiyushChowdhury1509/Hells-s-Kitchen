@@ -14,6 +14,15 @@ const FoodCard = ({ name, image, count }) => {
 
 const Body = () => {
   const [foodItems, setFoodItems] = useState([]);
+  let [selectedFoodItems,setSelectedFoodItems]=useState(foodItems);
+  let [search,setSearch]=useState("");
+
+  useEffect(()=>{
+    let filteredArray=foodItems.filter((item)=>(
+      item.name.includes(search)
+    ))
+    setSelectedFoodItems(filteredArray);
+  },[search])
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,13 +37,26 @@ const Body = () => {
   }, []);
 
   return (
+    <>
+    <div id="searchBar">
+      <input
+      type="text"
+      placeholder="search"
+      value={search}
+      onChange={(e)=>setSearch(e.target.value)}
+      />
+      <button>search</button>
+      <button onClick={()=>setSearch("")}>clear</button>
+    </div>
+
     <div className="flex flex-wrap justify-center">
-      {foodItems.map((food, index) => (
+      {selectedFoodItems.map((food, index) => (
         <Link key={index} to={`/home/${food.name}`}>
           <FoodCard name={food.name} image={food.image} count={food.count} />
         </Link>
       ))}
     </div>
+    </>
   );
 };
 
