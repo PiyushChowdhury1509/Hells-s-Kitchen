@@ -4,7 +4,7 @@ import Cart from "../components/cart";
 const CartSlice=createSlice({
     name:"cart",
     initialState:{
-        items:["banana","apple"]
+        items:[]
     },
     reducers:{
         addItem: (state,action)=>{
