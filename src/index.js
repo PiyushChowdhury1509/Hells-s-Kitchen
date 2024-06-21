@@ -8,13 +8,18 @@ import Body from "./components/body";
 import AboutUs from "./components/aboutUs";
 import ContactUs from "./components/contactUs";
 import FoodCard from "./components/foodCard";
+import Cart from "./components/cart";
+import { Provider } from "react-redux";
+import Store from "./utils/store";
 
 const AppLayout=()=>{
     return (
         <>
+        <Provider store={Store}>
         <Header/>
         <Outlet/>
         <Footer/>
+        </Provider>
         </>
     )
 }
@@ -43,6 +48,10 @@ const AppRouter=createBrowserRouter([
             {
                 path:":name",
                 element:<FoodCard/>
+            },
+            {
+                path:"cart",
+                element:<Cart/>
             }
         ]
     }

@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import db from "../constants/db";
 import { useEffect, useState } from "react";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Itemcard = ({ img, name, price, rate, country }) => {
   return (
@@ -39,6 +41,11 @@ const FoodCard = () => {
     setItems(filteredItems.slice(startIndex, endIndex));
   }, [page, searchText, allItems]);
 
+  const dispatch=useDispatch()
+  const handleAddToCart=(food)=>{
+    dispatch(addItem(food));
+  }
+
   return (
     <>
       <div id="searchBar">
@@ -57,6 +64,7 @@ const FoodCard = () => {
 
       <div className="flex flex-wrap justify-center">
         {items.map((food, index) => (
+          <>
           <Itemcard
             key={index}
             img={food.img}
@@ -65,6 +73,8 @@ const FoodCard = () => {
             rate={food.rate}
             country={food.country}
           />
+          <button onClick={()=>handleAddToCart(food)}>Add to Cart</button>
+          </>
         ))}
       </div>
 
