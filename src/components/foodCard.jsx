@@ -7,15 +7,17 @@ import { useDispatch } from "react-redux";
 
 const Itemcard = ({ img, name, price, rate, country }) => {
   return (
-    <div className="h-80 w-60 mx-7 my-7">
-      <img src={img} alt={name} className="h-50 w-60 px-5 py-5" />
-      <h1>{name}</h1>
-      <h1>$ {price}</h1>
-      <div className="flex items-center">
-        <h1>{rate}</h1>
-        <FaStar className="ml-1" />
+    <div className="bg-white shadow-md rounded-lg overflow-hidden w-60 mx-7 my-7">
+      <img src={img} alt={name} className="h-40 w-full object-cover" />
+      <div className="p-4">
+        <h1 className="text-lg font-bold">{name}</h1>
+        <h1 className="text-gray-700">$ {price}</h1>
+        <div className="flex items-center mt-2">
+          <h1 className="text-yellow-500">{rate}</h1>
+          <FaStar className="ml-1 text-yellow-500" />
+        </div>
+        <h1 className="text-gray-600 mt-1">Location: {country}</h1>
       </div>
-      <h1>location: {country}</h1>
     </div>
   );
 };
@@ -41,48 +43,62 @@ const FoodCard = () => {
     setItems(filteredItems.slice(startIndex, endIndex));
   }, [page, searchText, allItems]);
 
-  const dispatch=useDispatch()
-  const handleAddToCart=(food)=>{
+  const dispatch = useDispatch();
+  const handleAddToCart = (food) => {
     dispatch(addItem(food));
-  }
+  };
 
   return (
     <>
-      <div id="searchBar">
+      <div id="searchBar" className="flex justify-center mt-8 mb-4">
         <input
           type="text"
-          placeholder="search an item"
+          placeholder="Search an item"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
             setPage(0);
           }}
+          className="border border-gray-300 rounded-l-lg p-2 w-64 focus:outline-none focus:ring-2 focus:ring-yellow-500"
         />
-        <button>search</button>
-        <button onClick={() => setSearchText("")}>clear</button>
+        <button className="bg-yellow-500 text-white px-4 py-2 rounded-r-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500">Search</button>
+        <button 
+          onClick={() => setSearchText("")}
+          className="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">Clear</button>
       </div>
 
       <div className="flex flex-wrap justify-center">
         {items.map((food, index) => (
-          <>
-          <Itemcard
-            key={index}
-            img={food.img}
-            name={food.name}
-            price={food.price}
-            rate={food.rate}
-            country={food.country}
-          />
-          <button onClick={()=>handleAddToCart(food)}>Add to Cart</button>
-          </>
+          <div key={index} className="flex flex-col items-center">
+            <Itemcard
+              img={food.img}
+              name={food.name}
+              price={food.price}
+              rate={food.rate}
+              country={food.country}
+            />
+            <button 
+              onClick={() => handleAddToCart(food)}
+              className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              Add to Cart
+            </button>
+          </div>
         ))}
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 space-x-4">
         {page > 0 && (
-          <button onClick={() => setPage((prev) => prev - 1)}>Previous</button>
+          <button 
+            onClick={() => setPage((prev) => prev - 1)}
+            className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
+            Previous
+          </button>
         )}
-        <button onClick={() => setPage((prev) => prev + 1)}>Next</button>
+        <button 
+          onClick={() => setPage((prev) => prev + 1)}
+          className="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500">
+          Next
+        </button>
       </div>
     </>
   );

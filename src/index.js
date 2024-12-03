@@ -15,11 +15,9 @@ import Store from "./utils/store";
 const AppLayout=()=>{
     return (
         <>
-        <Provider store={Store}>
         <Header/>
         <Outlet/>
         <Footer/>
-        </Provider>
         </>
     )
 }
@@ -59,4 +57,8 @@ const AppRouter=createBrowserRouter([
 
 const root=ReactDOM.createRoot(document.getElementById('root'));
 
-root.render(<RouterProvider router={AppRouter}/>);
+root.render(
+    <Provider store={Store}>
+        <RouterProvider router={AppRouter}/>
+    </Provider>
+);
